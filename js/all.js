@@ -82,6 +82,11 @@ async function getCartList () {
     document.querySelector('.js-totalPrice').textContent = totalPrice;
     // 渲染購物車列表
     cartData = res.data.carts;
+    if (cartData.length === 0) {
+      let str = `<tr><td colspan="5" class="noDataYet">目前購物車沒有資料</td></tr>`;
+      cartList.innerHTML = str;
+      return;
+    }
     renderCartList(cartData);
   }
   catch (err) {
